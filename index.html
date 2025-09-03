@@ -28,14 +28,15 @@
             <div class="flex justify-between items-center h-16">
                 <div class="flex items-center">
                     <div class="bg-gradient-to-r from-blue-600 to-purple-600 text-white px-3 py-2 rounded-lg font-bold text-xl">
-                        SmartEdu
+                        EduPlay
                     </div>
                 </div>
                 <div class="hidden md:flex space-x-8 items-center">
                     <a href="#" class="text-gray-700 dark:text-gray-300 hover:text-blue-600 transition-colors">Home</a>
-                    <a href="courses.html" class="text-gray-700 dark:text-gray-300 hover:text-blue-600 transition-colors">Courses</a>
-                    <a href="dashboard.html" class="text-gray-700 dark:text-gray-300 hover:text-blue-600 transition-colors">Dashboard</a>
-                    <a href="profile.html" class="text-gray-700 dark:text-gray-300 hover:text-blue-600 transition-colors">Profile</a>
+                    <a href="school.html" class="text-gray-700 dark:text-gray-300 hover:text-blue-600 transition-colors">School</a>
+                    <a href="college.html" class="text-gray-700 dark:text-gray-300 hover:text-blue-600 transition-colors">College</a>
+                    <a href="teacher.html" class="text-gray-700 dark:text-gray-300 hover:text-blue-600 transition-colors">Teacher</a>
+                    <button onclick="toggleLanguage()" class="px-3 py-1 bg-green-100 text-green-600 rounded-full text-sm">हिंदी</button>
                     <button onclick="toggleDarkMode()" class="p-2 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors">
                         <svg id="theme-icon" class="w-5 h-5 text-gray-700 dark:text-gray-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z"></path>
@@ -54,17 +55,17 @@
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20">
             <div class="text-center">
                 <h1 class="text-5xl md:text-7xl font-bold bg-gradient-to-r from-blue-600 via-purple-600 to-cyan-600 bg-clip-text text-transparent mb-6">
-                    Smart Education
+                    EduPlay
                 </h1>
-                <p class="text-xl md:text-2xl text-gray-600 mb-8 max-w-3xl mx-auto">
-                    Learn more effectively, efficiently, flexibly and comfortably in the digital age
+                <p class="text-xl md:text-2xl text-gray-600 dark:text-gray-300 mb-8 max-w-3xl mx-auto">
+                    Gamified Learning Platform - School to College Level with AI Support
                 </p>
                 <div class="flex flex-col sm:flex-row gap-4 justify-center">
-                    <button onclick="startLearning()" class="bg-gradient-to-r from-blue-600 to-purple-600 text-white px-8 py-4 rounded-full text-lg font-semibold hover:shadow-xl transition-all transform hover:scale-105">
-                        Start Learning
+                    <button onclick="window.location.href='school.html'" class="bg-gradient-to-r from-blue-600 to-purple-600 text-white px-8 py-4 rounded-full text-lg font-semibold hover:shadow-xl transition-all transform hover:scale-105">
+                        🎮 School Level
                     </button>
-                    <button onclick="watchDemo()" class="border-2 border-blue-600 text-blue-600 px-8 py-4 rounded-full text-lg font-semibold hover:bg-blue-600 hover:text-white transition-all">
-                        Watch Demo
+                    <button onclick="window.location.href='college.html'" class="border-2 border-blue-600 text-blue-600 dark:text-blue-400 px-8 py-4 rounded-full text-lg font-semibold hover:bg-blue-600 hover:text-white transition-all">
+                        💻 College Level
                     </button>
                 </div>
             </div>
@@ -79,36 +80,30 @@
     <!-- Features Section -->
     <section class="py-20 bg-white/50">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <h2 class="text-4xl font-bold text-center mb-16 text-gray-800">Why Choose Smart Education?</h2>
+            <h2 class="text-4xl font-bold text-center mb-16 text-gray-800 dark:text-white">EduPlay Features</h2>
             <div class="grid md:grid-cols-3 gap-8">
-                <div class="bg-white rounded-2xl p-8 shadow-xl hover:shadow-2xl transition-all transform hover:-translate-y-2">
+                <div class="bg-white dark:bg-gray-800 rounded-2xl p-8 shadow-xl hover:shadow-2xl transition-all transform hover:-translate-y-2">
                     <div class="w-16 h-16 bg-gradient-to-r from-blue-500 to-cyan-500 rounded-xl flex items-center justify-center mb-6">
-                        <svg class="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"></path>
-                        </svg>
+                        <span class="text-3xl">🎮</span>
                     </div>
-                    <h3 class="text-2xl font-bold mb-4 text-gray-800">Effective Learning</h3>
-                    <p class="text-gray-600">AI-powered personalized learning paths that adapt to your pace and style.</p>
+                    <h3 class="text-2xl font-bold mb-4 text-gray-800 dark:text-white">Gamified Learning</h3>
+                    <p class="text-gray-600 dark:text-gray-300">Games, missions, rewards, and leaderboards make learning fun and engaging.</p>
                 </div>
                 
-                <div class="bg-white rounded-2xl p-8 shadow-xl hover:shadow-2xl transition-all transform hover:-translate-y-2">
+                <div class="bg-white dark:bg-gray-800 rounded-2xl p-8 shadow-xl hover:shadow-2xl transition-all transform hover:-translate-y-2">
                     <div class="w-16 h-16 bg-gradient-to-r from-purple-500 to-pink-500 rounded-xl flex items-center justify-center mb-6">
-                        <svg class="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path>
-                        </svg>
+                        <span class="text-3xl">🤖</span>
                     </div>
-                    <h3 class="text-2xl font-bold mb-4 text-gray-800">Flexible Schedule</h3>
-                    <p class="text-gray-600">Learn anytime, anywhere with our mobile-first responsive platform.</p>
+                    <h3 class="text-2xl font-bold mb-4 text-gray-800 dark:text-white">AI Buddy Support</h3>
+                    <p class="text-gray-600 dark:text-gray-300">Hindi/English AI tutor explains concepts and provides personalized guidance.</p>
                 </div>
                 
-                <div class="bg-white rounded-2xl p-8 shadow-xl hover:shadow-2xl transition-all transform hover:-translate-y-2">
+                <div class="bg-white dark:bg-gray-800 rounded-2xl p-8 shadow-xl hover:shadow-2xl transition-all transform hover:-translate-y-2">
                     <div class="w-16 h-16 bg-gradient-to-r from-green-500 to-teal-500 rounded-xl flex items-center justify-center mb-6">
-                        <svg class="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path>
-                        </svg>
+                        <span class="text-3xl">📶</span>
                     </div>
-                    <h3 class="text-2xl font-bold mb-4 text-gray-800">Comfortable Experience</h3>
-                    <p class="text-gray-600">Intuitive interface designed for seamless and enjoyable learning.</p>
+                    <h3 class="text-2xl font-bold mb-4 text-gray-800 dark:text-white">Offline + Online</h3>
+                    <p class="text-gray-600 dark:text-gray-300">Download videos for offline learning, works on low-cost devices.</p>
                 </div>
             </div>
         </div>
@@ -143,7 +138,7 @@
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="text-center">
                 <div class="bg-gradient-to-r from-blue-600 to-purple-600 text-white px-4 py-2 rounded-lg font-bold text-2xl inline-block mb-4">
-                    SmartEdu
+                    EduPlay
                 </div>
                 <p class="text-gray-400 mb-4">Empowering learners in the digital age</p>
                 <p class="text-sm text-gray-500">© 2024 AICTE Student Innovation. All rights reserved.</p>
@@ -151,13 +146,13 @@
         </div>
     </footer>
     <script>
-        function startLearning() {
-            showNotification('Welcome to Smart Education! Redirecting to courses...');
-            setTimeout(() => window.location.href = 'courses.html', 1500);
-        }
+        let currentLanguage = 'en';
         
-        function watchDemo() {
-            showNotification('Demo video coming soon!');
+        function toggleLanguage() {
+            currentLanguage = currentLanguage === 'en' ? 'hi' : 'en';
+            const btn = event.target;
+            btn.textContent = currentLanguage === 'en' ? 'हिंदी' : 'English';
+            showNotification(currentLanguage === 'hi' ? 'भाषा बदली गई' : 'Language changed');
         }
         
         // Animate stats on scroll

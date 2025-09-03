@@ -1,0 +1,300 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Teacher Dashboard - EduPlay</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>tailwind.config = {darkMode: 'class'}</script>
+    <script src="js/main.js"></script>
+</head>
+<body class="bg-gradient-to-br from-blue-50 to-indigo-100 dark:from-gray-900 dark:to-gray-800 min-h-screen transition-colors">
+    <!-- Navigation -->
+    <nav class="bg-white/80 dark:bg-gray-900/80 backdrop-blur-md shadow-lg sticky top-0 z-50 transition-colors">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-16">
+                <div class="bg-gradient-to-r from-blue-600 to-purple-600 text-white px-3 py-2 rounded-lg font-bold text-xl">EduPlay</div>
+                <div class="hidden md:flex space-x-8 items-center">
+                    <a href="index.html" class="text-gray-700 dark:text-gray-300 hover:text-blue-600 transition-colors">Home</a>
+                    <a href="school.html" class="text-gray-700 dark:text-gray-300 hover:text-blue-600 transition-colors">School</a>
+                    <a href="college.html" class="text-gray-700 dark:text-gray-300 hover:text-blue-600 transition-colors">College</a>
+                    <a href="#" class="text-blue-600 font-semibold">Teacher</a>
+                    <button onclick="toggleDarkMode()" class="p-2 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors">
+                        <svg id="theme-icon" class="w-5 h-5 text-gray-700 dark:text-gray-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z"></path>
+                        </svg>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="py-16">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+            <h1 class="text-5xl font-bold bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent mb-4">
+                Teacher Dashboard
+            </h1>
+            <p class="text-xl text-gray-600 dark:text-gray-300 mb-8">Manage Assignments & Track Student Progress</p>
+        </div>
+    </section>
+
+    <!-- Dashboard Stats -->
+    <section class="py-12">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid md:grid-cols-4 gap-6 mb-12">
+                <div class="bg-white dark:bg-gray-800 rounded-2xl p-6 shadow-lg">
+                    <div class="flex items-center justify-between">
+                        <div>
+                            <p class="text-gray-600 dark:text-gray-300 text-sm">Total Students</p>
+                            <p class="text-3xl font-bold text-blue-600">156</p>
+                        </div>
+                        <div class="w-12 h-12 bg-blue-100 dark:bg-blue-900 rounded-xl flex items-center justify-center">
+                            <span class="text-2xl">👥</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="bg-white dark:bg-gray-800 rounded-2xl p-6 shadow-lg">
+                    <div class="flex items-center justify-between">
+                        <div>
+                            <p class="text-gray-600 dark:text-gray-300 text-sm">Active Assignments</p>
+                            <p class="text-3xl font-bold text-green-600">12</p>
+                        </div>
+                        <div class="w-12 h-12 bg-green-100 dark:bg-green-900 rounded-xl flex items-center justify-center">
+                            <span class="text-2xl">📝</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="bg-white dark:bg-gray-800 rounded-2xl p-6 shadow-lg">
+                    <div class="flex items-center justify-between">
+                        <div>
+                            <p class="text-gray-600 dark:text-gray-300 text-sm">Avg. Score</p>
+                            <p class="text-3xl font-bold text-purple-600">78%</p>
+                        </div>
+                        <div class="w-12 h-12 bg-purple-100 dark:bg-purple-900 rounded-xl flex items-center justify-center">
+                            <span class="text-2xl">📊</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="bg-white dark:bg-gray-800 rounded-2xl p-6 shadow-lg">
+                    <div class="flex items-center justify-between">
+                        <div>
+                            <p class="text-gray-600 dark:text-gray-300 text-sm">Pending Reviews</p>
+                            <p class="text-3xl font-bold text-orange-600">8</p>
+                        </div>
+                        <div class="w-12 h-12 bg-orange-100 dark:bg-orange-900 rounded-xl flex items-center justify-center">
+                            <span class="text-2xl">⏳</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Main Content -->
+    <section class="pb-20">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid lg:grid-cols-3 gap-8">
+                <!-- Assignment Management -->
+                <div class="lg:col-span-2">
+                    <div class="bg-white dark:bg-gray-800 rounded-2xl p-8 shadow-lg mb-8">
+                        <div class="flex justify-between items-center mb-6">
+                            <h2 class="text-2xl font-bold text-gray-800 dark:text-white">Create Assignment</h2>
+                            <button onclick="createAssignment()" class="bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700">+ New</button>
+                        </div>
+                        
+                        <div class="grid md:grid-cols-2 gap-6">
+                            <div>
+                                <label class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">Assignment Title</label>
+                                <input type="text" placeholder="e.g., Java Basics Quiz" class="w-full px-4 py-3 border rounded-lg dark:bg-gray-700 dark:text-white">
+                            </div>
+                            <div>
+                                <label class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">Subject</label>
+                                <select class="w-full px-4 py-3 border rounded-lg dark:bg-gray-700 dark:text-white">
+                                    <option>Programming</option>
+                                    <option>Mathematics</option>
+                                    <option>Science</option>
+                                    <option>English</option>
+                                </select>
+                            </div>
+                            <div>
+                                <label class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">Class/Grade</label>
+                                <select class="w-full px-4 py-3 border rounded-lg dark:bg-gray-700 dark:text-white">
+                                    <option>Class 10</option>
+                                    <option>Class 11</option>
+                                    <option>Class 12</option>
+                                    <option>College - 1st Year</option>
+                                </select>
+                            </div>
+                            <div>
+                                <label class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">Due Date</label>
+                                <input type="date" class="w-full px-4 py-3 border rounded-lg dark:bg-gray-700 dark:text-white">
+                            </div>
+                        </div>
+                        
+                        <div class="mt-6">
+                            <label class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">Instructions</label>
+                            <textarea rows="4" placeholder="Assignment instructions..." class="w-full px-4 py-3 border rounded-lg dark:bg-gray-700 dark:text-white"></textarea>
+                        </div>
+                    </div>
+
+                    <!-- Active Assignments -->
+                    <div class="bg-white dark:bg-gray-800 rounded-2xl p-8 shadow-lg">
+                        <h2 class="text-2xl font-bold mb-6 text-gray-800 dark:text-white">Active Assignments</h2>
+                        <div class="space-y-4">
+                            <div class="border dark:border-gray-700 rounded-lg p-4">
+                                <div class="flex justify-between items-start mb-2">
+                                    <h3 class="font-bold text-gray-800 dark:text-white">Python Data Structures</h3>
+                                    <span class="bg-green-100 text-green-600 px-2 py-1 rounded text-sm">Active</span>
+                                </div>
+                                <p class="text-gray-600 dark:text-gray-300 text-sm mb-3">Due: March 25, 2024</p>
+                                <div class="flex justify-between items-center">
+                                    <div class="text-sm text-gray-600 dark:text-gray-300">
+                                        <span class="text-blue-600">45 submitted</span> / 60 students
+                                    </div>
+                                    <div class="flex gap-2">
+                                        <button onclick="viewSubmissions('python-ds')" class="text-blue-600 hover:underline text-sm">View Submissions</button>
+                                        <button onclick="editAssignment('python-ds')" class="text-gray-600 hover:underline text-sm">Edit</button>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="border dark:border-gray-700 rounded-lg p-4">
+                                <div class="flex justify-between items-start mb-2">
+                                    <h3 class="font-bold text-gray-800 dark:text-white">Math - Quadratic Equations</h3>
+                                    <span class="bg-orange-100 text-orange-600 px-2 py-1 rounded text-sm">Pending</span>
+                                </div>
+                                <p class="text-gray-600 dark:text-gray-300 text-sm mb-3">Due: March 30, 2024</p>
+                                <div class="flex justify-between items-center">
+                                    <div class="text-sm text-gray-600 dark:text-gray-300">
+                                        <span class="text-blue-600">12 submitted</span> / 45 students
+                                    </div>
+                                    <div class="flex gap-2">
+                                        <button onclick="viewSubmissions('math-quad')" class="text-blue-600 hover:underline text-sm">View Submissions</button>
+                                        <button onclick="editAssignment('math-quad')" class="text-gray-600 hover:underline text-sm">Edit</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Sidebar -->
+                <div class="space-y-8">
+                    <!-- Student Progress -->
+                    <div class="bg-white dark:bg-gray-800 rounded-2xl p-6 shadow-lg">
+                        <h3 class="text-xl font-semibold mb-4 text-gray-800 dark:text-white">Top Performers</h3>
+                        <div class="space-y-3">
+                            <div class="flex items-center justify-between p-2 bg-yellow-50 dark:bg-gray-700 rounded">
+                                <div class="flex items-center gap-2">
+                                    <span class="text-lg">🥇</span>
+                                    <span class="text-sm font-medium text-gray-800 dark:text-white">Arjun Kumar</span>
+                                </div>
+                                <span class="text-sm text-green-600">95%</span>
+                            </div>
+                            <div class="flex items-center justify-between p-2 bg-gray-50 dark:bg-gray-700 rounded">
+                                <div class="flex items-center gap-2">
+                                    <span class="text-lg">🥈</span>
+                                    <span class="text-sm font-medium text-gray-800 dark:text-white">Sneha Patel</span>
+                                </div>
+                                <span class="text-sm text-green-600">92%</span>
+                            </div>
+                            <div class="flex items-center justify-between p-2 bg-orange-50 dark:bg-gray-700 rounded">
+                                <div class="flex items-center gap-2">
+                                    <span class="text-lg">🥉</span>
+                                    <span class="text-sm font-medium text-gray-800 dark:text-white">Rohit Singh</span>
+                                </div>
+                                <span class="text-sm text-green-600">89%</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Quick Actions -->
+                    <div class="bg-white dark:bg-gray-800 rounded-2xl p-6 shadow-lg">
+                        <h3 class="text-xl font-semibold mb-4 text-gray-800 dark:text-white">Quick Actions</h3>
+                        <div class="space-y-3">
+                            <button onclick="bulkGrade()" class="w-full text-left p-3 rounded-lg hover:bg-gray-50 dark:hover:bg-gray-700 transition-colors flex items-center gap-3">
+                                <span class="text-lg">📊</span>
+                                <span class="text-gray-800 dark:text-white">Bulk Grade</span>
+                            </button>
+                            <button onclick="sendAnnouncement()" class="w-full text-left p-3 rounded-lg hover:bg-gray-50 dark:hover:bg-gray-700 transition-colors flex items-center gap-3">
+                                <span class="text-lg">📢</span>
+                                <span class="text-gray-800 dark:text-white">Send Announcement</span>
+                            </button>
+                            <button onclick="generateReport()" class="w-full text-left p-3 rounded-lg hover:bg-gray-50 dark:hover:bg-gray-700 transition-colors flex items-center gap-3">
+                                <span class="text-lg">📈</span>
+                                <span class="text-gray-800 dark:text-white">Generate Report</span>
+                            </button>
+                            <button onclick="scheduleClass()" class="w-full text-left p-3 rounded-lg hover:bg-gray-50 dark:hover:bg-gray-700 transition-colors flex items-center gap-3">
+                                <span class="text-lg">📅</span>
+                                <span class="text-gray-800 dark:text-white">Schedule Class</span>
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- Recent Activity -->
+                    <div class="bg-white dark:bg-gray-800 rounded-2xl p-6 shadow-lg">
+                        <h3 class="text-xl font-semibold mb-4 text-gray-800 dark:text-white">Recent Activity</h3>
+                        <div class="space-y-3 text-sm">
+                            <div class="flex items-start gap-2">
+                                <span class="text-green-500 mt-1">●</span>
+                                <div>
+                                    <div class="text-gray-800 dark:text-white">New submission from Priya</div>
+                                    <div class="text-gray-500 text-xs">2 minutes ago</div>
+                                </div>
+                            </div>
+                            <div class="flex items-start gap-2">
+                                <span class="text-blue-500 mt-1">●</span>
+                                <div>
+                                    <div class="text-gray-800 dark:text-white">Assignment deadline reminder sent</div>
+                                    <div class="text-gray-500 text-xs">1 hour ago</div>
+                                </div>
+                            </div>
+                            <div class="flex items-start gap-2">
+                                <span class="text-orange-500 mt-1">●</span>
+                                <div>
+                                    <div class="text-gray-800 dark:text-white">5 students joined class</div>
+                                    <div class="text-gray-500 text-xs">3 hours ago</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <script>
+        function createAssignment() {
+            showNotification('Creating new assignment...');
+        }
+        
+        function viewSubmissions(assignmentId) {
+            showNotification(`Viewing submissions for ${assignmentId}...`);
+        }
+        
+        function editAssignment(assignmentId) {
+            showNotification(`Editing assignment ${assignmentId}...`);
+        }
+        
+        function bulkGrade() {
+            showNotification('Opening bulk grading interface...');
+        }
+        
+        function sendAnnouncement() {
+            showNotification('Opening announcement composer...');
+        }
+        
+        function generateReport() {
+            showNotification('Generating progress report...');
+        }
+        
+        function scheduleClass() {
+            showNotification('Opening class scheduler...');
+        }
+    </script>
+</body>
+</html>

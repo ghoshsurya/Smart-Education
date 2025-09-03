@@ -1,0 +1,289 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>College Level - EduPlay</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>tailwind.config = {darkMode: 'class'}</script>
+    <script src="js/main.js"></script>
+</head>
+<body class="bg-gradient-to-br from-blue-50 to-indigo-100 dark:from-gray-900 dark:to-gray-800 min-h-screen transition-colors">
+    <!-- Navigation -->
+    <nav class="bg-white/80 dark:bg-gray-900/80 backdrop-blur-md shadow-lg sticky top-0 z-50 transition-colors">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-16">
+                <div class="bg-gradient-to-r from-blue-600 to-purple-600 text-white px-3 py-2 rounded-lg font-bold text-xl">EduPlay</div>
+                <div class="hidden md:flex space-x-8 items-center">
+                    <a href="index.html" class="text-gray-700 dark:text-gray-300 hover:text-blue-600 transition-colors">Home</a>
+                    <a href="school.html" class="text-gray-700 dark:text-gray-300 hover:text-blue-600 transition-colors">School</a>
+                    <a href="#" class="text-blue-600 font-semibold">College</a>
+                    <a href="teacher.html" class="text-gray-700 dark:text-gray-300 hover:text-blue-600 transition-colors">Teacher</a>
+                    <button onclick="toggleLanguage()" class="px-3 py-1 bg-green-100 text-green-600 rounded-full text-sm">हिंदी</button>
+                    <button onclick="toggleDarkMode()" class="p-2 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors">
+                        <svg id="theme-icon" class="w-5 h-5 text-gray-700 dark:text-gray-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z"></path>
+                        </svg>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="py-16">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+            <h1 class="text-5xl font-bold bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent mb-4">
+                College Level Programming
+            </h1>
+            <p class="text-xl text-gray-600 dark:text-gray-300 mb-8">AI Tutor for Coding & Technical Skills</p>
+        </div>
+    </section>
+
+    <!-- AI Coding Tutor -->
+    <section class="py-12">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <h2 class="text-3xl font-bold text-center mb-12 text-gray-800 dark:text-white">💻 AI Coding Tutor</h2>
+            <div class="grid lg:grid-cols-2 gap-8">
+                <div class="bg-white dark:bg-gray-800 rounded-2xl p-6 shadow-lg">
+                    <h3 class="text-xl font-bold mb-4 text-gray-800 dark:text-white">Interactive Code Learning</h3>
+                    <div class="bg-gray-900 rounded-lg p-4 mb-4">
+                        <div class="text-green-400 text-sm mb-2">// Java - Hello World Program</div>
+                        <pre class="text-white text-sm"><code>public class HelloWorld {
+    public static void main(String[] args) {
+        System.out.println("Hello, World!");
+    }
+}</code></pre>
+                    </div>
+                    <div class="flex gap-2 mb-4">
+                        <button onclick="explainCode()" class="bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700">🔊 Explain</button>
+                        <button onclick="runCode()" class="bg-green-600 text-white px-4 py-2 rounded hover:bg-green-700">▶️ Run</button>
+                        <button onclick="nextLesson()" class="bg-purple-600 text-white px-4 py-2 rounded hover:bg-purple-700">Next →</button>
+                    </div>
+                    <div class="bg-blue-50 dark:bg-gray-700 p-3 rounded">
+                        <div class="text-sm text-gray-700 dark:text-gray-300" id="explanation">
+                            Click "Explain" to hear line-by-line explanation in Hindi/English
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="bg-white dark:bg-gray-800 rounded-2xl p-6 shadow-lg">
+                    <h3 class="text-xl font-bold mb-4 text-gray-800 dark:text-white">Programming Languages</h3>
+                    <div class="grid grid-cols-2 gap-4">
+                        <div onclick="selectLanguage('java')" class="p-4 bg-orange-50 dark:bg-gray-700 rounded-lg cursor-pointer hover:bg-orange-100 text-center">
+                            <div class="text-2xl mb-2">☕</div>
+                            <div class="font-semibold text-gray-800 dark:text-white">Java</div>
+                        </div>
+                        <div onclick="selectLanguage('python')" class="p-4 bg-blue-50 dark:bg-gray-700 rounded-lg cursor-pointer hover:bg-blue-100 text-center">
+                            <div class="text-2xl mb-2">🐍</div>
+                            <div class="font-semibold text-gray-800 dark:text-white">Python</div>
+                        </div>
+                        <div onclick="selectLanguage('cpp')" class="p-4 bg-purple-50 dark:bg-gray-700 rounded-lg cursor-pointer hover:bg-purple-100 text-center">
+                            <div class="text-2xl mb-2">⚡</div>
+                            <div class="font-semibold text-gray-800 dark:text-white">C++</div>
+                        </div>
+                        <div onclick="selectLanguage('js')" class="p-4 bg-yellow-50 dark:bg-gray-700 rounded-lg cursor-pointer hover:bg-yellow-100 text-center">
+                            <div class="text-2xl mb-2">🌐</div>
+                            <div class="font-semibold text-gray-800 dark:text-white">JavaScript</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Adaptive Quizzes -->
+    <section class="py-12 bg-white/50 dark:bg-gray-800/50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <h2 class="text-3xl font-bold text-center mb-12 text-gray-800 dark:text-white">📊 Adaptive Quizzes</h2>
+            <div class="grid md:grid-cols-3 gap-6">
+                <div class="bg-white dark:bg-gray-800 rounded-2xl p-6 shadow-lg">
+                    <h3 class="text-xl font-bold mb-4 text-gray-800 dark:text-white">Database Management</h3>
+                    <div class="space-y-3">
+                        <div class="flex justify-between text-sm">
+                            <span class="text-gray-600 dark:text-gray-300">Progress</span>
+                            <span class="text-blue-600">75%</span>
+                        </div>
+                        <div class="w-full bg-gray-200 dark:bg-gray-700 rounded-full h-2">
+                            <div class="bg-blue-600 h-2 rounded-full" style="width: 75%"></div>
+                        </div>
+                        <div class="text-sm text-gray-600 dark:text-gray-300">15/20 questions completed</div>
+                        <button onclick="startQuiz('dbms')" class="w-full bg-blue-600 text-white py-2 rounded hover:bg-blue-700">Continue Quiz</button>
+                    </div>
+                </div>
+                
+                <div class="bg-white dark:bg-gray-800 rounded-2xl p-6 shadow-lg">
+                    <h3 class="text-xl font-bold mb-4 text-gray-800 dark:text-white">Data Structures</h3>
+                    <div class="space-y-3">
+                        <div class="flex justify-between text-sm">
+                            <span class="text-gray-600 dark:text-gray-300">Progress</span>
+                            <span class="text-green-600">100%</span>
+                        </div>
+                        <div class="w-full bg-gray-200 dark:bg-gray-700 rounded-full h-2">
+                            <div class="bg-green-600 h-2 rounded-full" style="width: 100%"></div>
+                        </div>
+                        <div class="text-sm text-gray-600 dark:text-gray-300">Score: 85/100</div>
+                        <button onclick="retakeQuiz('dsa')" class="w-full bg-green-600 text-white py-2 rounded hover:bg-green-700">Retake Quiz</button>
+                    </div>
+                </div>
+                
+                <div class="bg-white dark:bg-gray-800 rounded-2xl p-6 shadow-lg">
+                    <h3 class="text-xl font-bold mb-4 text-gray-800 dark:text-white">Operating Systems</h3>
+                    <div class="space-y-3">
+                        <div class="flex justify-between text-sm">
+                            <span class="text-gray-600 dark:text-gray-300">Progress</span>
+                            <span class="text-orange-600">30%</span>
+                        </div>
+                        <div class="w-full bg-gray-200 dark:bg-gray-700 rounded-full h-2">
+                            <div class="bg-orange-600 h-2 rounded-full" style="width: 30%"></div>
+                        </div>
+                        <div class="text-sm text-gray-600 dark:text-gray-300">6/20 questions completed</div>
+                        <button onclick="startQuiz('os')" class="w-full bg-orange-600 text-white py-2 rounded hover:bg-orange-700">Start Quiz</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Coding Practice -->
+    <section class="py-12">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <h2 class="text-3xl font-bold text-center mb-12 text-gray-800 dark:text-white">⚡ Coding Practice</h2>
+            <div class="bg-white dark:bg-gray-800 rounded-2xl p-8 shadow-lg">
+                <div class="grid lg:grid-cols-2 gap-8">
+                    <div>
+                        <h3 class="text-xl font-bold mb-4 text-gray-800 dark:text-white">Problem: Two Sum</h3>
+                        <div class="bg-gray-50 dark:bg-gray-700 p-4 rounded-lg mb-4">
+                            <p class="text-gray-700 dark:text-gray-300 text-sm">
+                                Given an array of integers nums and an integer target, return indices of the two numbers such that they add up to target.
+                            </p>
+                        </div>
+                        <div class="space-y-2">
+                            <div class="flex items-center gap-2">
+                                <span class="w-2 h-2 bg-green-500 rounded-full"></span>
+                                <span class="text-sm text-gray-600 dark:text-gray-300">Easy Level</span>
+                            </div>
+                            <div class="flex items-center gap-2">
+                                <span class="text-sm text-gray-600 dark:text-gray-300">💰 Points: 50</span>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div>
+                        <h3 class="text-xl font-bold mb-4 text-gray-800 dark:text-white">Your Solution</h3>
+                        <textarea class="w-full h-32 p-3 border rounded-lg font-mono text-sm dark:bg-gray-700 dark:text-white" placeholder="Write your code here..."></textarea>
+                        <div class="flex gap-2 mt-4">
+                            <button onclick="runTests()" class="bg-green-600 text-white px-4 py-2 rounded hover:bg-green-700">Run Tests</button>
+                            <button onclick="submitSolution()" class="bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700">Submit</button>
+                            <button onclick="getHint()" class="bg-yellow-600 text-white px-4 py-2 rounded hover:bg-yellow-700">💡 Hint</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Leaderboard -->
+    <section class="py-12 bg-white/50 dark:bg-gray-800/50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <h2 class="text-3xl font-bold text-center mb-12 text-gray-800 dark:text-white">🏆 Leaderboard</h2>
+            <div class="bg-white dark:bg-gray-800 rounded-2xl p-6 shadow-lg max-w-2xl mx-auto">
+                <div class="space-y-4">
+                    <div class="flex items-center justify-between p-3 bg-yellow-50 dark:bg-gray-700 rounded-lg">
+                        <div class="flex items-center gap-3">
+                            <span class="text-2xl">🥇</span>
+                            <div>
+                                <div class="font-bold text-gray-800 dark:text-white">Rahul Sharma</div>
+                                <div class="text-sm text-gray-600 dark:text-gray-300">2,450 points</div>
+                            </div>
+                        </div>
+                        <div class="text-right">
+                            <div class="text-sm text-gray-600 dark:text-gray-300">7 day streak</div>
+                            <div class="text-xs text-gray-500">🔥🔥🔥🔥🔥🔥🔥</div>
+                        </div>
+                    </div>
+                    
+                    <div class="flex items-center justify-between p-3 bg-gray-50 dark:bg-gray-700 rounded-lg">
+                        <div class="flex items-center gap-3">
+                            <span class="text-2xl">🥈</span>
+                            <div>
+                                <div class="font-bold text-gray-800 dark:text-white">Priya Patel</div>
+                                <div class="text-sm text-gray-600 dark:text-gray-300">2,200 points</div>
+                            </div>
+                        </div>
+                        <div class="text-right">
+                            <div class="text-sm text-gray-600 dark:text-gray-300">5 day streak</div>
+                            <div class="text-xs text-gray-500">🔥🔥🔥🔥🔥</div>
+                        </div>
+                    </div>
+                    
+                    <div class="flex items-center justify-between p-3 bg-orange-50 dark:bg-gray-700 rounded-lg border-2 border-orange-300">
+                        <div class="flex items-center gap-3">
+                            <span class="text-2xl">👤</span>
+                            <div>
+                                <div class="font-bold text-gray-800 dark:text-white">You</div>
+                                <div class="text-sm text-gray-600 dark:text-gray-300">1,850 points</div>
+                            </div>
+                        </div>
+                        <div class="text-right">
+                            <div class="text-sm text-gray-600 dark:text-gray-300">3 day streak</div>
+                            <div class="text-xs text-gray-500">🔥🔥🔥</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <script>
+        let currentLanguage = 'en';
+        
+        function toggleLanguage() {
+            currentLanguage = currentLanguage === 'en' ? 'hi' : 'en';
+            const btn = event.target;
+            btn.textContent = currentLanguage === 'en' ? 'हिंदी' : 'English';
+            showNotification(currentLanguage === 'hi' ? 'भाषा बदली गई' : 'Language changed');
+        }
+        
+        function explainCode() {
+            const explanation = document.getElementById('explanation');
+            explanation.innerHTML = currentLanguage === 'hi' ? 
+                '🔊 यह एक Java प्रोग्राम है। पहली लाइन में class बनाई गई है...' :
+                '🔊 This is a Java program. First line creates a class...';
+            showNotification('Playing audio explanation...');
+        }
+        
+        function runCode() {
+            showNotification('Output: Hello, World!');
+        }
+        
+        function nextLesson() {
+            showNotification('Loading next lesson...');
+        }
+        
+        function selectLanguage(lang) {
+            showNotification(`Switching to ${lang.toUpperCase()} tutorial...`);
+        }
+        
+        function startQuiz(subject) {
+            showNotification(`Starting ${subject.toUpperCase()} adaptive quiz...`);
+        }
+        
+        function retakeQuiz(subject) {
+            showNotification(`Retaking ${subject.toUpperCase()} quiz...`);
+        }
+        
+        function runTests() {
+            showNotification('Running test cases... ✅ All tests passed!');
+        }
+        
+        function submitSolution() {
+            showNotification('Solution submitted! +50 points earned 🎉');
+        }
+        
+        function getHint() {
+            showNotification('💡 Hint: Use a hash map to store visited numbers');
+        }
+    </script>
+</body>
+</html>

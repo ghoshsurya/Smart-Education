@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>School Level - EduPlay</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>tailwind.config = {darkMode: 'class'}</script>
+    <script src="js/main.js"></script>
+</head>
+<body class="bg-gradient-to-br from-blue-50 to-indigo-100 dark:from-gray-900 dark:to-gray-800 min-h-screen transition-colors">
+    <!-- Navigation -->
+    <nav class="bg-white/80 dark:bg-gray-900/80 backdrop-blur-md shadow-lg sticky top-0 z-50 transition-colors">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-16">
+                <div class="bg-gradient-to-r from-blue-600 to-purple-600 text-white px-3 py-2 rounded-lg font-bold text-xl">EduPlay</div>
+                <div class="hidden md:flex space-x-8 items-center">
+                    <a href="index.html" class="text-gray-700 dark:text-gray-300 hover:text-blue-600 transition-colors">Home</a>
+                    <a href="#" class="text-blue-600 font-semibold">School</a>
+                    <a href="college.html" class="text-gray-700 dark:text-gray-300 hover:text-blue-600 transition-colors">College</a>
+                    <button onclick="toggleLanguage()" class="px-3 py-1 bg-green-100 text-green-600 rounded-full text-sm">हिंदी</button>
+                    <button onclick="toggleDarkMode()" class="p-2 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors">
+                        <svg id="theme-icon" class="w-5 h-5 text-gray-700 dark:text-gray-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z"></path>
+                        </svg>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="py-16">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+            <h1 class="text-5xl font-bold bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent mb-4">
+                School Level Learning
+            </h1>
+            <p class="text-xl text-gray-600 dark:text-gray-300 mb-8">Gamified CBSE/NCERT Learning with AI Buddy</p>
+        </div>
+    </section>
+
+    <!-- Game Zone -->
+    <section class="py-12">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <h2 class="text-3xl font-bold text-center mb-12 text-gray-800 dark:text-white">🎮 Game Zone</h2>
+            <div class="grid md:grid-cols-4 gap-6">
+                <div onclick="playGame('speed-math')" class="bg-white dark:bg-gray-800 rounded-2xl p-6 shadow-lg hover:shadow-xl transition-all cursor-pointer transform hover:scale-105">
+                    <div class="text-4xl mb-4">⚡</div>
+                    <h3 class="text-xl font-bold mb-2 text-gray-800 dark:text-white">Speed Math</h3>
+                    <p class="text-gray-600 dark:text-gray-300">Quick calculations</p>
+                </div>
+                <div onclick="playGame('sudoku')" class="bg-white dark:bg-gray-800 rounded-2xl p-6 shadow-lg hover:shadow-xl transition-all cursor-pointer transform hover:scale-105">
+                    <div class="text-4xl mb-4">🧩</div>
+                    <h3 class="text-xl font-bold mb-2 text-gray-800 dark:text-white">Sudoku</h3>
+                    <p class="text-gray-600 dark:text-gray-300">Number puzzles</p>
+                </div>
+                <div onclick="playGame('chess')" class="bg-white dark:bg-gray-800 rounded-2xl p-6 shadow-lg hover:shadow-xl transition-all cursor-pointer transform hover:scale-105">
+                    <div class="text-4xl mb-4">♟️</div>
+                    <h3 class="text-xl font-bold mb-2 text-gray-800 dark:text-white">Chess</h3>
+                    <p class="text-gray-600 dark:text-gray-300">Strategy game</p>
+                </div>
+                <div onclick="playGame('brain-teasers')" class="bg-white dark:bg-gray-800 rounded-2xl p-6 shadow-lg hover:shadow-xl transition-all cursor-pointer transform hover:scale-105">
+                    <div class="text-4xl mb-4">🧠</div>
+                    <h3 class="text-xl font-bold mb-2 text-gray-800 dark:text-white">Brain Teasers</h3>
+                    <p class="text-gray-600 dark:text-gray-300">Logic puzzles</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CBSE/NCERT Section -->
+    <section class="py-12 bg-white/50 dark:bg-gray-800/50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <h2 class="text-3xl font-bold text-center mb-12 text-gray-800 dark:text-white">📚 CBSE/NCERT Learning</h2>
+            <div class="grid md:grid-cols-3 gap-8">
+                <div class="bg-white dark:bg-gray-800 rounded-2xl p-6 shadow-lg">
+                    <h3 class="text-xl font-bold mb-4 text-gray-800 dark:text-white">Class Selection</h3>
+                    <select class="w-full p-3 border rounded-lg mb-4 dark:bg-gray-700 dark:text-white">
+                        <option>Class 6</option>
+                        <option>Class 7</option>
+                        <option>Class 8</option>
+                        <option>Class 9</option>
+                        <option>Class 10</option>
+                        <option>Class 11</option>
+                        <option>Class 12</option>
+                    </select>
+                    <button onclick="loadBooks()" class="w-full bg-blue-600 text-white py-2 rounded-lg hover:bg-blue-700">Load Books</button>
+                </div>
+                <div class="bg-white dark:bg-gray-800 rounded-2xl p-6 shadow-lg">
+                    <h3 class="text-xl font-bold mb-4 text-gray-800 dark:text-white">📖 NCERT Books</h3>
+                    <div class="space-y-2">
+                        <div onclick="openBook('math')" class="p-3 bg-blue-50 dark:bg-gray-700 rounded-lg cursor-pointer hover:bg-blue-100">Mathematics</div>
+                        <div onclick="openBook('science')" class="p-3 bg-green-50 dark:bg-gray-700 rounded-lg cursor-pointer hover:bg-green-100">Science</div>
+                        <div onclick="openBook('english')" class="p-3 bg-purple-50 dark:bg-gray-700 rounded-lg cursor-pointer hover:bg-purple-100">English</div>
+                        <div onclick="openBook('hindi')" class="p-3 bg-orange-50 dark:bg-gray-700 rounded-lg cursor-pointer hover:bg-orange-100">Hindi</div>
+                    </div>
+                </div>
+                <div class="bg-white dark:bg-gray-800 rounded-2xl p-6 shadow-lg">
+                    <h3 class="text-xl font-bold mb-4 text-gray-800 dark:text-white">🎯 Missions & Rewards</h3>
+                    <div class="space-y-3">
+                        <div class="flex items-center justify-between p-2 bg-yellow-50 dark:bg-gray-700 rounded">
+                            <span class="text-sm">Complete Chapter 1</span>
+                            <span class="text-yellow-600">🪙 50</span>
+                        </div>
+                        <div class="flex items-center justify-between p-2 bg-green-50 dark:bg-gray-700 rounded">
+                            <span class="text-sm">Daily Quiz</span>
+                            <span class="text-green-600">🏆 Badge</span>
+                        </div>
+                        <div class="text-center mt-4">
+                            <div class="text-2xl font-bold text-blue-600">🪙 1,250</div>
+                            <div class="text-sm text-gray-600 dark:text-gray-300">Total Coins</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- AI Buddy Section -->
+    <section class="py-12">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <h2 class="text-3xl font-bold text-center mb-12 text-gray-800 dark:text-white">🤖 AI Buddy</h2>
+            <div class="bg-white dark:bg-gray-800 rounded-2xl p-8 shadow-lg max-w-4xl mx-auto">
+                <div class="flex items-center mb-6">
+                    <div class="w-16 h-16 bg-gradient-to-r from-blue-500 to-purple-500 rounded-full flex items-center justify-center text-white text-2xl mr-4">🤖</div>
+                    <div>
+                        <h3 class="text-xl font-bold text-gray-800 dark:text-white">Buddy</h3>
+                        <p class="text-gray-600 dark:text-gray-300">Your AI Learning Companion</p>
+                    </div>
+                </div>
+                <div class="bg-gray-50 dark:bg-gray-700 rounded-lg p-4 mb-4 max-h-64 overflow-y-auto" id="chat-messages">
+                    <div class="mb-3">
+                        <div class="bg-blue-500 text-white p-3 rounded-lg inline-block">
+                            नमस्ते! मैं आपका AI Buddy हूँ। मैं आपको पढ़ाई में मदद करूंगा। कोई सवाल पूछिए!
+                        </div>
+                    </div>
+                </div>
+                <div class="flex gap-2">
+                    <input type="text" id="chat-input" placeholder="Ask me anything..." class="flex-1 p-3 border rounded-lg dark:bg-gray-700 dark:text-white">
+                    <button onclick="sendMessage()" class="bg-blue-600 text-white px-6 py-3 rounded-lg hover:bg-blue-700">Send</button>
+                    <button onclick="startMockTest()" class="bg-green-600 text-white px-4 py-3 rounded-lg hover:bg-green-700">Mock Test</button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Free Resources -->
+    <section class="py-12 bg-white/50 dark:bg-gray-800/50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <h2 class="text-3xl font-bold text-center mb-12 text-gray-800 dark:text-white">📺 Free Learning Videos</h2>
+            <div class="grid md:grid-cols-3 gap-6">
+                <div class="bg-white dark:bg-gray-800 rounded-2xl p-6 shadow-lg">
+                    <div class="aspect-video bg-gray-200 dark:bg-gray-700 rounded-lg mb-4 flex items-center justify-center">
+                        <div class="text-4xl">▶️</div>
+                    </div>
+                    <h3 class="font-bold mb-2 text-gray-800 dark:text-white">Class 10 Math - Quadratic Equations</h3>
+                    <p class="text-sm text-gray-600 dark:text-gray-300 mb-3">Complete chapter explanation</p>
+                    <div class="flex gap-2">
+                        <button onclick="watchVideo('math-quad')" class="flex-1 bg-red-600 text-white py-2 rounded text-sm">Watch</button>
+                        <button onclick="downloadVideo('math-quad')" class="bg-gray-600 text-white px-3 py-2 rounded text-sm">📥</button>
+                    </div>
+                </div>
+                <div class="bg-white dark:bg-gray-800 rounded-2xl p-6 shadow-lg">
+                    <div class="aspect-video bg-gray-200 dark:bg-gray-700 rounded-lg mb-4 flex items-center justify-center">
+                        <div class="text-4xl">▶️</div>
+                    </div>
+                    <h3 class="font-bold mb-2 text-gray-800 dark:text-white">Class 9 Science - Atoms & Molecules</h3>
+                    <p class="text-sm text-gray-600 dark:text-gray-300 mb-3">Interactive science lesson</p>
+                    <div class="flex gap-2">
+                        <button onclick="watchVideo('science-atoms')" class="flex-1 bg-red-600 text-white py-2 rounded text-sm">Watch</button>
+                        <button onclick="downloadVideo('science-atoms')" class="bg-gray-600 text-white px-3 py-2 rounded text-sm">📥</button>
+                    </div>
+                </div>
+                <div class="bg-white dark:bg-gray-800 rounded-2xl p-6 shadow-lg">
+                    <div class="aspect-video bg-gray-200 dark:bg-gray-700 rounded-lg mb-4 flex items-center justify-center">
+                        <div class="text-4xl">▶️</div>
+                    </div>
+                    <h3 class="font-bold mb-2 text-gray-800 dark:text-white">Class 8 English - Grammar Basics</h3>
+                    <p class="text-sm text-gray-600 dark:text-gray-300 mb-3">English grammar made easy</p>
+                    <div class="flex gap-2">
+                        <button onclick="watchVideo('english-grammar')" class="flex-1 bg-red-600 text-white py-2 rounded text-sm">Watch</button>
+                        <button onclick="downloadVideo('english-grammar')" class="bg-gray-600 text-white px-3 py-2 rounded text-sm">📥</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <script>
+        let currentLanguage = 'en';
+        
+        function toggleLanguage() {
+            currentLanguage = currentLanguage === 'en' ? 'hi' : 'en';
+            const btn = event.target;
+            btn.textContent = currentLanguage === 'en' ? 'हिंदी' : 'English';
+            showNotification(currentLanguage === 'hi' ? 'भाषा बदली गई' : 'Language changed');
+        }
+        
+        function playGame(game) {
+            showNotification(`Starting ${game.replace('-', ' ')}...`);
+            // Game logic would go here
+        }
+        
+        function loadBooks() {
+            showNotification('Loading NCERT books...');
+        }
+        
+        function openBook(subject) {
+            showNotification(`Opening ${subject} book...`);
+        }
+        
+        function sendMessage() {
+            const input = document.getElementById('chat-input');
+            const messages = document.getElementById('chat-messages');
+            
+            if (input.value.trim()) {
+                // Add user message
+                const userMsg = document.createElement('div');
+                userMsg.className = 'mb-3 text-right';
+                userMsg.innerHTML = `<div class="bg-gray-300 dark:bg-gray-600 text-gray-800 dark:text-white p-3 rounded-lg inline-block">${input.value}</div>`;
+                messages.appendChild(userMsg);
+                
+                // Add AI response
+                setTimeout(() => {
+                    const aiMsg = document.createElement('div');
+                    aiMsg.className = 'mb-3';
+                    aiMsg.innerHTML = `<div class="bg-blue-500 text-white p-3 rounded-lg inline-block">मैं समझ गया! ${currentLanguage === 'hi' ? 'यह एक अच्छा सवाल है।' : 'That\'s a great question!'}</div>`;
+                    messages.appendChild(aiMsg);
+                    messages.scrollTop = messages.scrollHeight;
+                }, 1000);
+                
+                input.value = '';
+                messages.scrollTop = messages.scrollHeight;
+            }
+        }
+        
+        function startMockTest() {
+            showNotification('Starting mock test...');
+        }
+        
+        function watchVideo(videoId) {
+            showNotification('Opening video player...');
+        }
+        
+        function downloadVideo(videoId) {
+            showNotification('Downloading video for offline viewing...');
+        }
+        
+        document.getElementById('chat-input').addEventListener('keypress', function(e) {
+            if (e.key === 'Enter') sendMessage();
+        });
+    </script>
+</body>
+</html>
