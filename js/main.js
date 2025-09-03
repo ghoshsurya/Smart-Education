@@ -18,6 +18,13 @@ document.addEventListener('DOMContentLoaded', function() {
             }
         });
     });
+    
+    // Initialize dark mode
+    const savedDarkMode = storage.get('darkMode');
+    if (savedDarkMode) {
+        document.documentElement.classList.add('dark');
+    }
+    updateThemeIcon();
 });
 
 // Form validation
@@ -58,3 +65,30 @@ const storage = {
     get: (key) => JSON.parse(localStorage.getItem(key) || 'null'),
     remove: (key) => localStorage.removeItem(key)
 };
+
+// Dark mode functionality
+function toggleDarkMode() {
+    document.documentElement.classList.toggle('dark');
+    const isDark = document.documentElement.classList.contains('dark');
+    storage.set('darkMode', isDark);
+    updateThemeIcon();
+}
+
+function updateThemeIcon() {
+    const isDark = document.documentElement.classList.contains('dark');
+    const icon = document.getElementById('theme-icon');
+    if (icon) {
+        icon.innerHTML = isDark ? 
+            '<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z"></path>' :
+            '<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z"></path>';
+    }
+}
+
+// Initialize dark mode
+document.addEventListener('DOMContentLoaded', function() {
+    const savedDarkMode = storage.get('darkMode');
+    if (savedDarkMode) {
+        document.documentElement.classList.add('dark');
+    }
+    updateThemeIcon();
+});

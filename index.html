@@ -7,6 +7,7 @@
     <script src="https://cdn.tailwindcss.com"></script>
     <script>
         tailwind.config = {
+            darkMode: 'class',
             theme: {
                 extend: {
                     colors: {
@@ -20,9 +21,9 @@
     </script>
     <script src="js/main.js"></script>
 </head>
-<body class="bg-gradient-to-br from-blue-50 to-indigo-100 min-h-screen">
+<body class="bg-gradient-to-br from-blue-50 to-indigo-100 dark:from-gray-900 dark:to-gray-800 min-h-screen transition-colors">
     <!-- Navigation -->
-    <nav class="bg-white/80 backdrop-blur-md shadow-lg sticky top-0 z-50">
+    <nav class="bg-white/80 dark:bg-gray-900/80 backdrop-blur-md shadow-lg sticky top-0 z-50 transition-colors">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="flex justify-between items-center h-16">
                 <div class="flex items-center">
@@ -30,11 +31,16 @@
                         SmartEdu
                     </div>
                 </div>
-                <div class="hidden md:flex space-x-8">
-                    <a href="#" class="text-gray-700 hover:text-blue-600 transition-colors">Home</a>
-                    <a href="courses.html" class="text-gray-700 hover:text-blue-600 transition-colors">Courses</a>
-                    <a href="dashboard.html" class="text-gray-700 hover:text-blue-600 transition-colors">Dashboard</a>
-                    <a href="profile.html" class="text-gray-700 hover:text-blue-600 transition-colors">Profile</a>
+                <div class="hidden md:flex space-x-8 items-center">
+                    <a href="#" class="text-gray-700 dark:text-gray-300 hover:text-blue-600 transition-colors">Home</a>
+                    <a href="courses.html" class="text-gray-700 dark:text-gray-300 hover:text-blue-600 transition-colors">Courses</a>
+                    <a href="dashboard.html" class="text-gray-700 dark:text-gray-300 hover:text-blue-600 transition-colors">Dashboard</a>
+                    <a href="profile.html" class="text-gray-700 dark:text-gray-300 hover:text-blue-600 transition-colors">Profile</a>
+                    <button onclick="toggleDarkMode()" class="p-2 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors">
+                        <svg id="theme-icon" class="w-5 h-5 text-gray-700 dark:text-gray-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z"></path>
+                        </svg>
+                    </button>
                 </div>
                 <button class="bg-gradient-to-r from-blue-600 to-purple-600 text-white px-6 py-2 rounded-full hover:shadow-lg transition-all">
                     Get Started
