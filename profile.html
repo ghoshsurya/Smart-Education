@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Profile - Smart Education</title>
     <script src="https://cdn.tailwindcss.com"></script>
+    <script src="js/main.js"></script>
 </head>
 <body class="bg-gradient-to-br from-blue-50 to-indigo-100 min-h-screen">
     <!-- Navigation -->
@@ -43,7 +44,7 @@
                             <p class="text-gray-600 mb-2">Computer Science Student</p>
                             <p class="text-sm text-gray-500">Member since January 2024</p>
                         </div>
-                        <button class="bg-gradient-to-r from-blue-600 to-purple-600 text-white px-6 py-2 rounded-full hover:shadow-lg transition-all mt-4 md:mt-0">
+                        <button onclick="toggleEditMode()" id="editBtn" class="bg-gradient-to-r from-blue-600 to-purple-600 text-white px-6 py-2 rounded-full hover:shadow-lg transition-all mt-4 md:mt-0">
                             Edit Profile
                         </button>
                     </div>
@@ -84,7 +85,7 @@
                             </div>
                         </div>
                         <div class="mt-6">
-                            <button class="bg-gradient-to-r from-blue-600 to-purple-600 text-white px-6 py-3 rounded-lg hover:shadow-lg transition-all">
+                            <button onclick="saveProfile()" class="bg-gradient-to-r from-blue-600 to-purple-600 text-white px-6 py-3 rounded-lg hover:shadow-lg transition-all">
                                 Save Changes
                             </button>
                         </div>
@@ -234,5 +235,56 @@
             </div>
         </div>
     </footer>
+    <script>
+        let editMode = false;
+        
+        function toggleEditMode() {
+            editMode = !editMode;
+            const inputs = document.querySelectorAll('input, textarea, select');
+            const btn = document.getElementById('editBtn');
+            
+            inputs.forEach(input => {
+                input.disabled = !editMode;
+                if (editMode) {
+                    input.classList.add('bg-blue-50');
+                } else {
+                    input.classList.remove('bg-blue-50');
+                }
+            });
+            
+            btn.textContent = editMode ? 'Cancel Edit' : 'Edit Profile';
+        }
+        
+        function saveProfile() {
+            const formData = {
+                name: document.querySelector('input[value="Alex Johnson"]').value,
+                email: document.querySelector('input[type="email"]').value,
+                phone: document.querySelector('input[type="tel"]').value,
+                dob: document.querySelector('input[type="date"]').value,
+                bio: document.querySelector('textarea').value
+            };
+            
+            storage.set('userProfile', formData);
+            showNotification('Profile updated successfully!');
+            toggleEditMode();
+        }
+        
+        function viewCertificate(certName) {
+            showNotification(`Opening ${certName} certificate...`);
+            setTimeout(() => {
+                alert(`Certificate: ${certName}\nIssued: Smart Education Platform\nDate: ${new Date().toLocaleDateString()}`);
+            }, 500);
+        }
+        
+        document.addEventListener('DOMContentLoaded', function() {
+            const inputs = document.querySelectorAll('input, textarea, select');
+            inputs.forEach(input => input.disabled = true);
+            
+            document.querySelectorAll('.text-blue-600.text-sm.hover\\:underline').forEach((btn, index) => {
+                const certNames = ['Web Development', 'Advanced Calculus'];
+                btn.onclick = () => viewCertificate(certNames[index]);
+            });
+        });
+    </script>
 </body>
 </html>

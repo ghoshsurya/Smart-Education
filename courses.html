@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Courses - Smart Education</title>
     <script src="https://cdn.tailwindcss.com"></script>
+    <script src="js/main.js"></script>
 </head>
 <body class="bg-gradient-to-br from-blue-50 to-indigo-100 min-h-screen">
     <!-- Navigation -->
@@ -36,8 +37,8 @@
             
             <!-- Search Bar -->
             <div class="max-w-2xl mx-auto relative">
-                <input type="text" placeholder="Search courses..." class="w-full px-6 py-4 rounded-full border-2 border-gray-200 focus:border-blue-500 focus:outline-none text-lg">
-                <button class="absolute right-2 top-2 bg-gradient-to-r from-blue-600 to-purple-600 text-white px-6 py-2 rounded-full">
+                <input type="text" id="searchInput" placeholder="Search courses..." class="w-full px-6 py-4 rounded-full border-2 border-gray-200 focus:border-blue-500 focus:outline-none text-lg">
+                <button onclick="searchCourses()" class="absolute right-2 top-2 bg-gradient-to-r from-blue-600 to-purple-600 text-white px-6 py-2 rounded-full">
                     Search
                 </button>
             </div>
@@ -48,11 +49,11 @@
     <section class="py-8">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="flex flex-wrap justify-center gap-4 mb-12">
-                <button class="bg-white px-6 py-3 rounded-full shadow-md hover:shadow-lg transition-all border-2 border-blue-500 text-blue-600 font-semibold">All</button>
-                <button class="bg-white px-6 py-3 rounded-full shadow-md hover:shadow-lg transition-all hover:border-blue-500">Technology</button>
-                <button class="bg-white px-6 py-3 rounded-full shadow-md hover:shadow-lg transition-all hover:border-blue-500">Science</button>
-                <button class="bg-white px-6 py-3 rounded-full shadow-md hover:shadow-lg transition-all hover:border-blue-500">Mathematics</button>
-                <button class="bg-white px-6 py-3 rounded-full shadow-md hover:shadow-lg transition-all hover:border-blue-500">Languages</button>
+                <button onclick="filterCourses('all')" class="category-btn bg-white px-6 py-3 rounded-full shadow-md hover:shadow-lg transition-all border-2 border-blue-500 text-blue-600 font-semibold">All</button>
+                <button onclick="filterCourses('technology')" class="category-btn bg-white px-6 py-3 rounded-full shadow-md hover:shadow-lg transition-all hover:border-blue-500">Technology</button>
+                <button onclick="filterCourses('science')" class="category-btn bg-white px-6 py-3 rounded-full shadow-md hover:shadow-lg transition-all hover:border-blue-500">Science</button>
+                <button onclick="filterCourses('mathematics')" class="category-btn bg-white px-6 py-3 rounded-full shadow-md hover:shadow-lg transition-all hover:border-blue-500">Mathematics</button>
+                <button onclick="filterCourses('languages')" class="category-btn bg-white px-6 py-3 rounded-full shadow-md hover:shadow-lg transition-all hover:border-blue-500">Languages</button>
             </div>
         </div>
     </section>
@@ -77,7 +78,7 @@
                         <p class="text-gray-600 mb-4">Learn HTML, CSS, and JavaScript from scratch</p>
                         <div class="flex items-center justify-between">
                             <span class="text-2xl font-bold text-blue-600">₹999</span>
-                            <button class="bg-gradient-to-r from-blue-600 to-purple-600 text-white px-4 py-2 rounded-full hover:shadow-lg transition-all">
+                            <button onclick="enrollCourse('Web Development Fundamentals')" class="bg-gradient-to-r from-blue-600 to-purple-600 text-white px-4 py-2 rounded-full hover:shadow-lg transition-all">
                                 Enroll Now
                             </button>
                         </div>
@@ -214,5 +215,55 @@
             </div>
         </div>
     </footer>
+    <script>
+        function searchCourses() {
+            const query = document.getElementById('searchInput').value.toLowerCase();
+            const courses = document.querySelectorAll('.grid > div');
+            
+            courses.forEach(course => {
+                const title = course.querySelector('h3').textContent.toLowerCase();
+                const description = course.querySelector('p').textContent.toLowerCase();
+                
+                if (title.includes(query) || description.includes(query)) {
+                    course.style.display = 'block';
+                } else {
+                    course.style.display = query ? 'none' : 'block';
+                }
+            });
+        }
+        
+        function filterCourses(category) {
+            const courses = document.querySelectorAll('.grid > div');
+            const buttons = document.querySelectorAll('.category-btn');
+            
+            buttons.forEach(btn => {
+                btn.classList.remove('border-blue-500', 'text-blue-600', 'font-semibold');
+                btn.classList.add('hover:border-blue-500');
+            });
+            
+            event.target.classList.add('border-blue-500', 'text-blue-600', 'font-semibold');
+            event.target.classList.remove('hover:border-blue-500');
+            
+            courses.forEach(course => {
+                const courseCategory = course.querySelector('span').textContent.toLowerCase();
+                course.style.display = (category === 'all' || courseCategory.includes(category)) ? 'block' : 'none';
+            });
+        }
+        
+        function enrollCourse(courseName) {
+            const enrolled = storage.get('enrolledCourses') || [];
+            if (!enrolled.includes(courseName)) {
+                enrolled.push(courseName);
+                storage.set('enrolledCourses', enrolled);
+                showNotification(`Successfully enrolled in ${courseName}!`);
+            } else {
+                showNotification('You are already enrolled in this course!', 'error');
+            }
+        }
+        
+        document.getElementById('searchInput').addEventListener('keyup', function(e) {
+            if (e.key === 'Enter') searchCourses();
+        });
+    </script>
 </body>
 </html>

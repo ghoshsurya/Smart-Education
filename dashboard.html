@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Dashboard - Smart Education</title>
     <script src="https://cdn.tailwindcss.com"></script>
+    <script src="js/main.js"></script>
 </head>
 <body class="bg-gradient-to-br from-blue-50 to-indigo-100 min-h-screen">
     <!-- Navigation -->
@@ -35,7 +36,7 @@
                     <p class="text-gray-600">Continue your learning journey</p>
                 </div>
                 <div class="mt-4 md:mt-0">
-                    <button class="bg-gradient-to-r from-blue-600 to-purple-600 text-white px-6 py-3 rounded-full hover:shadow-lg transition-all">
+                    <button onclick="window.location.href='courses.html'" class="bg-gradient-to-r from-blue-600 to-purple-600 text-white px-6 py-3 rounded-full hover:shadow-lg transition-all">
                         Browse New Courses
                     </button>
                 </div>
@@ -128,7 +129,7 @@
                                     <div class="bg-gradient-to-r from-blue-500 to-cyan-500 h-2 rounded-full" style="width: 75%"></div>
                                 </div>
                             </div>
-                            <button class="bg-gradient-to-r from-blue-600 to-purple-600 text-white px-6 py-2 rounded-full hover:shadow-lg transition-all">
+                            <button onclick="continueCourse('Web Development Fundamentals')" class="bg-gradient-to-r from-blue-600 to-purple-600 text-white px-6 py-2 rounded-full hover:shadow-lg transition-all">
                                 Continue Course
                             </button>
                         </div>
@@ -147,7 +148,7 @@
                                     <div class="bg-gradient-to-r from-purple-500 to-pink-500 h-2 rounded-full" style="width: 25%"></div>
                                 </div>
                             </div>
-                            <button class="bg-gradient-to-r from-purple-600 to-pink-600 text-white px-6 py-2 rounded-full hover:shadow-lg transition-all">
+                            <button onclick="continueCourse('Data Science Basics')" class="bg-gradient-to-r from-purple-600 to-pink-600 text-white px-6 py-2 rounded-full hover:shadow-lg transition-all">
                                 Continue Course
                             </button>
                         </div>
@@ -245,5 +246,55 @@
             </div>
         </div>
     </footer>
+    <script>
+        function continueCourse(courseName) {
+            showNotification(`Continuing ${courseName}...`);
+            // Simulate course progress
+            setTimeout(() => {
+                showNotification('Course session started!');
+            }, 1500);
+        }
+        
+        function updateProgress() {
+            const progressBars = document.querySelectorAll('[style*="width:"]');
+            progressBars.forEach(bar => {
+                const currentWidth = parseInt(bar.style.width);
+                if (currentWidth < 100) {
+                    bar.style.width = Math.min(currentWidth + 5, 100) + '%';
+                }
+            });
+        }
+        
+        // Load user data
+        document.addEventListener('DOMContentLoaded', function() {
+            const enrolled = storage.get('enrolledCourses') || [];
+            const coursesCount = document.querySelector('.text-3xl.text-blue-600');
+            if (coursesCount && enrolled.length > 0) {
+                coursesCount.textContent = enrolled.length;
+            }
+            
+            // Update streak animation
+            const streakDays = document.querySelectorAll('.bg-orange-500');
+            streakDays.forEach((day, index) => {
+                setTimeout(() => {
+                    day.classList.add('animate-pulse');
+                }, index * 200);
+            });
+        });
+        
+        // Quick actions
+        document.querySelectorAll('button[class*="hover:bg-gray-50"]').forEach(btn => {
+            btn.addEventListener('click', function() {
+                const action = this.textContent.trim();
+                if (action === 'Browse Courses') {
+                    window.location.href = 'courses.html';
+                } else if (action === 'View Certificates') {
+                    showNotification('Certificates page coming soon!');
+                } else if (action === 'Edit Profile') {
+                    window.location.href = 'profile.html';
+                }
+            });
+        });
+    </script>
 </body>
 </html>
